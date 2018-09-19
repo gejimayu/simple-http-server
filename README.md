@@ -21,9 +21,9 @@
   
     ![alt text](https://i.imgur.com/aDo9lLk.png)
     
-  - 25 KB HTML file
+  - 20 KB HTML file
   
-    ![alt text](https://i.imgur.com/aDo9lLk.png)
+    ![alt text](https://i.imgur.com/IiFcob1.png)
     
   - Memory usage both (similar)
   
