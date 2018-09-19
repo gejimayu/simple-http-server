@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PAT PROJECT</title>
+</head>
+<body>
+  <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title> My Urbanhire Profile </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <style type="text/css">
+    * {
+      border-radius: 0px !important;
+      outline: none;
+      -webkit-box-shadow: none !important;
+      -moz-box-shadow: none !important;
+      box-shadow: none !important;
+    }
+
+    #brand-logo {
+      width: 180px;
+      margin-left: 20px;
+      padding: 17px 0px 17px 0px;
+    }
+
+    #searchButton {
+      background-color: #3FB6E6;
+      color: white;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    #notifButton {
+      background-color: transparent;
+      position: absolute;
+      right: 60px;
+      bottom: 23px;
+      font-size: 120%;
+    }
+
+    .badgeNotif {
+      color: white;
+      position: inherit;
+      font-size: 0.5em;
+      background-color: red;
+      padding: 1px 6px 1px 6px;
+      right: 6px;
+      border-radius: 15px !important;
+    }
+
+    #sideBarButton {
+      background-color: transparent;
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      font-size: 140%;
+    }
+
+    .input-group {
+      margin-left: 70px;
+    }
+
+    .jumbotron {
+      background-image: url("../images/programmer.png");
+      max-height: 300px;
+      color: white;
+    }
+
+    #ava {
+      width: 120px;
+      position: absolute;
+      top: 20px;
+    }
+
+    h4 {
+      padding-top: 120px;
+    }
+
+    .col-2 {
+      display: inline-flex;
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+
+    #editProfileButton {
+      background-color: transparent;
+      margin-left: 600px;
+      font-size: 1.2em;
+    }
+
+    .row {
+      padding: 0px 120px;
+    }
+
+    .col-8 {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .col-4 {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blankSide {
+      margin-top: 20px;
+      width: 98%;
+    }
+
+    .sidebarNav {
+      height: 100%;
+      background-color: #f0f0f0;
+      width: 0px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      overflow-x: hidden;
+      transition: 0.4s;
+      white-space: nowrap;
+    }
+
+    .upper h2 {
+      font-size: 1.4em;
+      color: #7a7a7a;
+      margin-left: 27px;
+      margin-top: 10px;
+    }
+
+    .bottom li {
+      padding-top: 14px;
+      font-size: 1.1em;
+    }
+
+    .bottom a {
+      color: #7a7a7a;
+    }
+
+    .bottom li:hover {
+      color: #7a7a7a;
+      background-color: #f0f0f0;
+    }
+
+    .bottom img {
+      font-size: 1.3em;
+      padding-right: 13px;
+    }
+
+    .signOutButton img {
+      font-size: 1.3em;
+      padding-right: 13px;
+    }
+
+    .signOutButton {
+      font-size: 1.1em;
+      color: red;
+      padding-top: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      color: #7a7a7a;
+    }
+
+    .col-3 {
+      min-width: 120px;
+    }
+
+    #closeClose {
+      background-color: transparent;
+      padding-left: 180px;
+    }
+
+    @media screen and (max-width: 700px) {
+      #searchJobs {
+        display: none;
+        visibility: hidden;
+      }
+
+      .row {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .row .col-4 {
+        display: none;
+        height: 0px;
+        width: 0px;
+        margin: 0px;
+      }
+
+      .row .col-8 {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .jumbotron {
+        white-space: nowrap;
+      }
+
+      .fullProfile {
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"
+  style="background-color: white !important; border: 1px solid #f0f0f0">
+    <a class="navbar-brand" href="#"><img src="images/logo.png" id="brand-logo"></a>
+    <div class="col-5" id="searchJobs">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Position or Company">
+        <select class="custom-select col-5">
+          <option disabled selected>Location</option>
+          <option>Jakarta</option>
+          <option>Bandung</option>
+          <option>Yogyakarta</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn" id="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="sideButtons">
+      <button class="btn" id="notifButton" data-badge="1">
+        <i class="fa fa-bell-o"></i>
+        <span class="badgeNotif">1</span>
+      </button>
+      <button class="btn" id="sideBarButton" onclick="openSideBar()"><i class="fa fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col-8">
+      <div class="jumbotron">
+        <img src="images/avatar.png" class="rounded-circle" id="ava">
+        <h4 class="jumbotron_content">Stevanno Hero Leadervand</h4>
+        <h5 class="jumbotron_content">A Web Programmer</h5>
+        <h6 class="jumbotron_content">Web Developer at Urbanhire</h6> 
+      </div>
+      <div class="fullProfile">
+        <div class="profileHeader">
+          <h5 class="col-2">PROFILE</h5>
+          <button class="btn" type="button" id="editProfileButton">
+            <i class="fa fa-edit"></i>
+          </button>
+        </div>
+        <div class="row" style="padding: 20px 0px 0px 15px;">
+          <div class="col-3">
+            <p>Urbanhire ID</p>
+            <p>Username</p>
+            <p>Name</p>
+            <p>Email</p>
+            <p>Gender</p>
+            <p>Birthday</p>
+            <p>Headline</p>
+            <p>Phone</p>
+            <p>Address</p>
+          </div>
+          <div class="col-9" style="font-weight: bold;">
+            <p>G7NV8BOLQ6</p>
+            <p>stevannohero</p>
+            <p>Stevanno Hero Leadervand</p>
+            <p>stevannohero@gmail.com</p>
+            <p>Male</p>
+            <p>12 January 1945</p>
+            <p>Web Developer</p>
+            <p>+222 111 333</p>
+            <p>Bandung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <img class="blankSide" src="images/blank.png">
+      <img class="blankSide" src="images/blank.png">
+    </div>
+  </div>
+  <div class="sidebarNav" id="sideBarOpen">
+    <button class="btn" id="closeClose" onclick="closeSideBar()">
+      <img src="images/icons/close.png">
+    </button>
+    <div class="upper">
+      <a href="#"><h2>BROWSE JOB</h2></a>
+      <a href="#"><h2>CAREER ADVICE</h2></a>
+      <a href="#"><h2>EMPLOYERS</h2></a>      
+    </div>
+    <ul class="bottom" style="padding-top: 10px">
+      <li><a href="#"><img src="images/icons/1.png">PROFILE</a></li>
+      <li><a href="#"><img src="images/icons/2.png">SKILL</a></li>
+      <li><a href="#"><img src="images/icons/3.png">RESUME</a></li>
+      <li><a href="#"><img src="images/icons/4.png">CERTIFICATE</a></li>
+      <li><a href="#"><img src="images/icons/5.png">SAVED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/6.png">DISMISS JOB</a></li>
+      <li><a href="#"><img src="images/icons/7.png">APPLIED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/8.png">JOB ALERT</a></li>
+      <li><a href="#"><img src="images/icons/9.png">SETTINGS</a></li>
+    </ul>
+    <ul>
+      <li class="signOutButton"><img src="images/icons/10.png">SIGN OUT</li>
+    </ul>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"
+  style="background-color: white !important; border: 1px solid #f0f0f0">
+    <a class="navbar-brand" href="#"><img src="images/logo.png" id="brand-logo"></a>
+    <div class="col-5" id="searchJobs">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Position or Company">
+        <select class="custom-select col-5">
+          <option disabled selected>Location</option>
+          <option>Jakarta</option>
+          <option>Bandung</option>
+          <option>Yogyakarta</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn" id="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="sideButtons">
+      <button class="btn" id="notifButton" data-badge="1">
+        <i class="fa fa-bell-o"></i>
+        <span class="badgeNotif">1</span>
+      </button>
+      <button class="btn" id="sideBarButton" onclick="openSideBar()"><i class="fa fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col-8">
+      <div class="jumbotron">
+        <img src="images/avatar.png" class="rounded-circle" id="ava">
+        <h4 class="jumbotron_content">Stevanno Hero Leadervand</h4>
+        <h5 class="jumbotron_content">A Web Programmer</h5>
+        <h6 class="jumbotron_content">Web Developer at Urbanhire</h6> 
+      </div>
+      <div class="fullProfile">
+        <div class="profileHeader">
+          <h5 class="col-2">PROFILE</h5>
+          <button class="btn" type="button" id="editProfileButton">
+            <i class="fa fa-edit"></i>
+          </button>
+        </div>
+        <div class="row" style="padding: 20px 0px 0px 15px;">
+          <div class="col-3">
+            <p>Urbanhire ID</p>
+            <p>Username</p>
+            <p>Name</p>
+            <p>Email</p>
+            <p>Gender</p>
+            <p>Birthday</p>
+            <p>Headline</p>
+            <p>Phone</p>
+            <p>Address</p>
+          </div>
+          <div class="col-9" style="font-weight: bold;">
+            <p>G7NV8BOLQ6</p>
+            <p>stevannohero</p>
+            <p>Stevanno Hero Leadervand</p>
+            <p>stevannohero@gmail.com</p>
+            <p>Male</p>
+            <p>12 January 1945</p>
+            <p>Web Developer</p>
+            <p>+222 111 333</p>
+            <p>Bandung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <img class="blankSide" src="images/blank.png">
+      <img class="blankSide" src="images/blank.png">
+    </div>
+  </div>
+  <div class="sidebarNav" id="sideBarOpen">
+    <button class="btn" id="closeClose" onclick="closeSideBar()">
+      <img src="images/icons/close.png">
+    </button>
+    <div class="upper">
+      <a href="#"><h2>BROWSE JOB</h2></a>
+      <a href="#"><h2>CAREER ADVICE</h2></a>
+      <a href="#"><h2>EMPLOYERS</h2></a>      
+    </div>
+    <ul class="bottom" style="padding-top: 10px">
+      <li><a href="#"><img src="images/icons/1.png">PROFILE</a></li>
+      <li><a href="#"><img src="images/icons/2.png">SKILL</a></li>
+      <li><a href="#"><img src="images/icons/3.png">RESUME</a></li>
+      <li><a href="#"><img src="images/icons/4.png">CERTIFICATE</a></li>
+      <li><a href="#"><img src="images/icons/5.png">SAVED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/6.png">DISMISS JOB</a></li>
+      <li><a href="#"><img src="images/icons/7.png">APPLIED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/8.png">JOB ALERT</a></li>
+      <li><a href="#"><img src="images/icons/9.png">SETTINGS</a></li>
+    </ul>
+    <ul>
+      <li class="signOutButton"><img src="images/icons/10.png">SIGN OUT</li>
+    </ul>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"
+  style="background-color: white !important; border: 1px solid #f0f0f0">
+    <a class="navbar-brand" href="#"><img src="images/logo.png" id="brand-logo"></a>
+    <div class="col-5" id="searchJobs">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Position or Company">
+        <select class="custom-select col-5">
+          <option disabled selected>Location</option>
+          <option>Jakarta</option>
+          <option>Bandung</option>
+          <option>Yogyakarta</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn" id="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="sideButtons">
+      <button class="btn" id="notifButton" data-badge="1">
+        <i class="fa fa-bell-o"></i>
+        <span class="badgeNotif">1</span>
+      </button>
+      <button class="btn" id="sideBarButton" onclick="openSideBar()"><i class="fa fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col-8">
+      <div class="jumbotron">
+        <img src="images/avatar.png" class="rounded-circle" id="ava">
+        <h4 class="jumbotron_content">Stevanno Hero Leadervand</h4>
+        <h5 class="jumbotron_content">A Web Programmer</h5>
+        <h6 class="jumbotron_content">Web Developer at Urbanhire</h6> 
+      </div>
+      <div class="fullProfile">
+        <div class="profileHeader">
+          <h5 class="col-2">PROFILE</h5>
+          <button class="btn" type="button" id="editProfileButton">
+            <i class="fa fa-edit"></i>
+          </button>
+        </div>
+        <div class="row" style="padding: 20px 0px 0px 15px;">
+          <div class="col-3">
+            <p>Urbanhire ID</p>
+            <p>Username</p>
+            <p>Name</p>
+            <p>Email</p>
+            <p>Gender</p>
+            <p>Birthday</p>
+            <p>Headline</p>
+            <p>Phone</p>
+            <p>Address</p>
+          </div>
+          <div class="col-9" style="font-weight: bold;">
+            <p>G7NV8BOLQ6</p>
+            <p>stevannohero</p>
+            <p>Stevanno Hero Leadervand</p>
+            <p>stevannohero@gmail.com</p>
+            <p>Male</p>
+            <p>12 January 1945</p>
+            <p>Web Developer</p>
+            <p>+222 111 333</p>
+            <p>Bandung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <img class="blankSide" src="images/blank.png">
+      <img class="blankSide" src="images/blank.png">
+    </div>
+  </div>
+  <div class="sidebarNav" id="sideBarOpen">
+    <button class="btn" id="closeClose" onclick="closeSideBar()">
+      <img src="images/icons/close.png">
+    </button>
+    <div class="upper">
+      <a href="#"><h2>BROWSE JOB</h2></a>
+      <a href="#"><h2>CAREER ADVICE</h2></a>
+      <a href="#"><h2>EMPLOYERS</h2></a>      
+    </div>
+    <ul class="bottom" style="padding-top: 10px">
+      <li><a href="#"><img src="images/icons/1.png">PROFILE</a></li>
+      <li><a href="#"><img src="images/icons/2.png">SKILL</a></li>
+      <li><a href="#"><img src="images/icons/3.png">RESUME</a></li>
+      <li><a href="#"><img src="images/icons/4.png">CERTIFICATE</a></li>
+      <li><a href="#"><img src="images/icons/5.png">SAVED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/6.png">DISMISS JOB</a></li>
+      <li><a href="#"><img src="images/icons/7.png">APPLIED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/8.png">JOB ALERT</a></li>
+      <li><a href="#"><img src="images/icons/9.png">SETTINGS</a></li>
+    </ul>
+    <ul>
+      <li class="signOutButton"><img src="images/icons/10.png">SIGN OUT</li>
+    </ul>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"
+  style="background-color: white !important; border: 1px solid #f0f0f0">
+    <a class="navbar-brand" href="#"><img src="images/logo.png" id="brand-logo"></a>
+    <div class="col-5" id="searchJobs">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Position or Company">
+        <select class="custom-select col-5">
+          <option disabled selected>Location</option>
+          <option>Jakarta</option>
+          <option>Bandung</option>
+          <option>Yogyakarta</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn" id="searchButton"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="sideButtons">
+      <button class="btn" id="notifButton" data-badge="1">
+        <i class="fa fa-bell-o"></i>
+        <span class="badgeNotif">1</span>
+      </button>
+      <button class="btn" id="sideBarButton" onclick="openSideBar()"><i class="fa fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col-8">
+      <div class="jumbotron">
+        <img src="images/avatar.png" class="rounded-circle" id="ava">
+        <h4 class="jumbotron_content">Stevanno Hero Leadervand</h4>
+        <h5 class="jumbotron_content">A Web Programmer</h5>
+        <h6 class="jumbotron_content">Web Developer at Urbanhire</h6> 
+      </div>
+      <div class="fullProfile">
+        <div class="profileHeader">
+          <h5 class="col-2">PROFILE</h5>
+          <button class="btn" type="button" id="editProfileButton">
+            <i class="fa fa-edit"></i>
+          </button>
+        </div>
+        <div class="row" style="padding: 20px 0px 0px 15px;">
+          <div class="col-3">
+            <p>Urbanhire ID</p>
+            <p>Username</p>
+            <p>Name</p>
+            <p>Email</p>
+            <p>Gender</p>
+            <p>Birthday</p>
+            <p>Headline</p>
+            <p>Phone</p>
+            <p>Address</p>
+          </div>
+          <div class="col-9" style="font-weight: bold;">
+            <p>G7NV8BOLQ6</p>
+            <p>stevannohero</p>
+            <p>Stevanno Hero Leadervand</p>
+            <p>stevannohero@gmail.com</p>
+            <p>Male</p>
+            <p>12 January 1945</p>
+            <p>Web Developer</p>
+            <p>+222 111 333</p>
+            <p>Bandung</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <img class="blankSide" src="images/blank.png">
+      <img class="blankSide" src="images/blank.png">
+    </div>
+  </div>
+  <div class="sidebarNav" id="sideBarOpen">
+    <button class="btn" id="closeClose" onclick="closeSideBar()">
+      <img src="images/icons/close.png">
+    </button>
+    <div class="upper">
+      <a href="#"><h2>BROWSE JOB</h2></a>
+      <a href="#"><h2>CAREER ADVICE</h2></a>
+      <a href="#"><h2>EMPLOYERS</h2></a>      
+    </div>
+    <ul class="bottom" style="padding-top: 10px">
+      <li><a href="#"><img src="images/icons/1.png">PROFILE</a></li>
+      <li><a href="#"><img src="images/icons/2.png">SKILL</a></li>
+      <li><a href="#"><img src="images/icons/3.png">RESUME</a></li>
+      <li><a href="#"><img src="images/icons/4.png">CERTIFICATE</a></li>
+      <li><a href="#"><img src="images/icons/5.png">SAVED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/6.png">DISMISS JOB</a></li>
+      <li><a href="#"><img src="images/icons/7.png">APPLIED JOBS</a></li>
+      <li><a href="#"><img src="images/icons/8.png">JOB ALERT</a></li>
+      <li><a href="#"><img src="images/icons/9.png">SETTINGS</a></li>
+    </ul>
+    <ul>
+      <li class="signOutButton"><img src="images/icons/10.png">SIGN OUT</li>
+    </ul>
+  </div>
+</body>
+<script type="text/javascript">
+  function openSideBar() {
+    document.getElementById("sideBarOpen").style.width = "250px";
+  }
+
+  function closeSideBar() {
+    document.getElementById("sideBarOpen").style.width = "0px";
+  }
+</script>
+</html>
