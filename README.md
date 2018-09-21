@@ -20,11 +20,10 @@
   - 500 byte HTML file
   
     ![alt text](https://i.imgur.com/aDo9lLk.png)
+    ![alt text](https://i.imgur.com/Wb6lrJ2.png?1)
     
   - 20 KB HTML file
   
     ![alt text](https://i.imgur.com/IiFcob1.png)
-    
-  - Memory usage both (similar)
-  
     ![alt text](https://i.imgur.com/gRTUrxc.png?1)
+    
