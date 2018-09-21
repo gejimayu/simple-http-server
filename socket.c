@@ -60,6 +60,10 @@ int main(int argc, char *argv[]) {
 
   printf("Server is listening on port : %d\n", PORT);
 
+  strcpy(response, http_header);
+    
+  readfile(filename, response);
+
   while (1) {
     socklen_t server_address_length = sizeof(server_address);
     if ((new_fd = accept(server_fd, (struct sockaddr *)&server_address, &server_address_length)) < 0) {
@@ -69,11 +73,7 @@ int main(int argc, char *argv[]) {
     }
 
     read(new_fd, request, sizeof(request));
-    printf("%s\n", request);
-
-    strcpy(response, http_header);
-    
-  	readfile(filename, response);
+    // printf("%s\n", request);   logging is commented out for faster performance
 
     write(new_fd, response, strlen(response));
 
