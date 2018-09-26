@@ -19,13 +19,13 @@
 - Result
   - 500 byte HTML file
   
-    ![alt text](https://i.imgur.com/aDo9lLk.png)
-    ![alt text](https://i.imgur.com/Wb6lrJ2.png?1)
+    ![alt text](img/1_tools_500b.png)
+    ![alt text](img/1_tools_500b_memusage.png)
     
   - 20 KB HTML file
   
-    ![alt text](https://i.imgur.com/IiFcob1.png)
-    ![alt text](https://i.imgur.com/gRTUrxc.png?1)
+    ![alt text](img/1_tools_20KB.png)
+    ![alt text](img/1_tools_20KB_memusage.png)
 
 ### Benchmarking Simple Webserver in C
 - Tools:
@@ -36,7 +36,7 @@
   - `sudo apt-get valgrind`
   - `git clone git@github.com:stevannohero/simple-http-server.git`
   - `npm install`
-  - `gcc -o server server.c`
+  - `make`
   - `make run-500b` or `make run-25kb`
   - `node node_modules/loadtest/bin/loadtest.js -n 10000 -c 10000 -m GET http://localhost:8080`
   - -n == num of request, -c == num of concurrent request, -m == method
@@ -44,12 +44,20 @@
  Result
   - 500 byte HTML file
   
-    ![alt text](https://i.imgur.com/yEMv9fJ.png)
-    ![alt text](https://i.imgur.com/PKqr9hy.png)
+    ![alt text](img/2_c_500b.png)
+    ![alt text](img/2_c_500b_memusage.png)
     
   - 20 KB HTML file
   
-    ![alt text](https://i.imgur.com/FicoSCV.png)
-    ![alt text](https://i.imgur.com/s8KknAB.png)
+    ![alt text](img/2_c_20KB.png)
+    ![alt text](img/2_c_20KB_memusage.png)
+
+### Perhitungan
+- Benchmarking NGINX
+  - 500b = 6.0578 x 10^-4 sec/request
+  - 20KB = 7.0187 x 10^-4 sec/request
+- Benchmarking C
+  - 500b = 8.9254 x 10^-4 sec/request
+  - 20KB = 10.0154 x 10^-4 sec/request
   
     
