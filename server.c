@@ -24,36 +24,6 @@ void readfile(char *filename, char *buffer) {
   fclose(file);
 }
 
-int parseLine(char* line){
-    // This assumes that a digit will be found and the line ends in " Kb".
-    int i = strlen(line);
-    const char* p = line;
-    while (*p <'0' || *p > '9') p++;
-    line[i-3] = '\0';
-    i = atoi(p);
-    return i;
-}
-
-int getMemUsage(){ //Note: this value is in KB!
-  FILE* file = fopen("/proc/self/status", "r");
-  int result = -1;
-  char line[128];
-
-  while (fgets(line, 128, file) != NULL) {
-    if (strncmp(line, "VmRSS:", 6) == 0){
-        result = parseLine(line);
-        break;
-    }
-  }
-  fclose(file);
-  return result;
-}
-
-void intHandler(int dummy) {
-  printf("Memory usage: %d\n", getMemUsage());
-  exit(0);
-}
-
 int main(int argc, char *argv[]) {
 	char *filename = argv[1];
   char http_header[] = "HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
@@ -90,8 +60,6 @@ int main(int argc, char *argv[]) {
   }
 
   printf("Server is listening on port : %d\n", PORT);
-
-  signal(SIGINT, intHandler);
 
   while (1) {
     socklen_t server_address_length = sizeof(server_address);

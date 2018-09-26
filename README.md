@@ -31,22 +31,25 @@
 - Tools:
   - https://github.com/alexfernandez/loadtest
   - Socket library in C
+  - http://valgrind.org
 - How to load test:
+  - `sudo apt-get valgrind`
   - `git clone git@github.com:stevannohero/simple-http-server.git`
   - `npm install`
   - `gcc -o server server.c`
-  - `./server filename` (*change filename to index500b.html or index20KB.html*)
-  - `node node_modules/loadtest/bin/loadtest.js -n 10000 -c 10000 -m GET http://test.com/500b`
+  - `make run-500b` or `make run-25kb`
+  - `node node_modules/loadtest/bin/loadtest.js -n 10000 -c 10000 -m GET http://localhost:8080`
   - -n == num of request, -c == num of concurrent request, -m == method
+  - To show memusage: `ms_print massif.out.__`
  Result
   - 500 byte HTML file
   
     ![alt text](https://i.imgur.com/yEMv9fJ.png)
-    ![alt text](https://i.imgur.com/oTL7RM7.png)
+    ![alt text](https://i.imgur.com/PKqr9hy.png)
     
   - 20 KB HTML file
   
     ![alt text](https://i.imgur.com/FicoSCV.png)
-    ![alt text](https://i.imgur.com/Nh06T7G.png)
+    ![alt text](https://i.imgur.com/s8KknAB.png)
   
     
